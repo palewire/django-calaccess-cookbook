@@ -1,0 +1,51 @@
+{
+    "run_list": [
+        "ccdc::default",
+        "ccdc::python",
+        "ccdc::apache",
+        "ccdc::mysql",
+        "ccdc::apps"
+    ],
+    
+    "base_packages": [
+        "git-core",
+        "bash-completion"
+    ],
+    
+    "users": {
+        "ccdc": {
+          "id": 1003,
+          "full_name": "ccdc"
+        }
+    },
+    
+    "groups": {
+        "ccdc": {
+          "gid": 203,
+          "members": ["ccdc"]
+        }
+    },
+    
+    "ubuntu_python_packages": [
+        "python-setuptools",
+        "python-pip",
+        "python-dev",
+        "libpq-dev",
+        "python-virtualenv",
+        "fabric"
+    ],
+    
+    "pip_python_packages": {},
+    
+    "app_name": "calaccess",
+    "apps_user": "ccdc",
+    "apps_password": "ccdc",
+    
+    "db_name": "ccdc",
+    "db_user": "ccdc",
+    "db_password": "ccdc",
+    
+    "apache_port": "80",
+    
+    "crons": {}
+}
