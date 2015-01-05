@@ -49,6 +49,7 @@ def bootstrap():
 
     # Done deal
     print(green("Success!"))
+    print "Visit the app at %s" % host
 
 
 @task
