@@ -35,8 +35,8 @@ def bootstrap():
     config_file.write(yaml.dump(config, default_flow_style=False))
     config_file.close()
 
-    print "- Waiting 15 seconds before logging in to configure machine"
-    time.sleep(15)
+    print "- Waiting 30 seconds before logging in to configure machine"
+    time.sleep(30)
 
     # Install chef and run it
     installchef()
