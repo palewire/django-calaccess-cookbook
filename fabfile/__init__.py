@@ -7,6 +7,7 @@ from fabric.api import env, local, task
 
 from amazon import createserver
 from configure import configure
+from configure import ConfigTask
 from chef import installchef, cook
 from app import restartapache, rmpyc
 from app import pipinstall, manage, migrate, collectstatic
@@ -51,7 +52,7 @@ def bootstrap():
     print "Visit the app at %s" % host
 
 
-@task
+@task(task_class=ConfigTask)
 def ssh():
     """
     Log into the EC2 instance using SSH.

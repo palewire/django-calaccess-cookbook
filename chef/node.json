@@ -52,7 +52,7 @@
         "loaddump": {
             "minute": "2",
             "hour": "7",
-            "command": "/apps/calaccess/bin/python /apps/calaccess/repo/manage.py downloadcalaccessrawdata downloadcalaccessrawdata > /dev/null 2>&1 && /apps/calaccess/bin/python /apps/calaccess/repo/manage.py downloadcalaccessrawdata buildcalaccesscampaignbrowser > /dev/null 2>&1"
+            "command": "/apps/calaccess/bin/python /apps/calaccess/repo/manage.py downloadcalaccessrawdata > /dev/null 2>&1 && /apps/calaccess/bin/python /apps/calaccess/repo/manage.py buildcalaccesscampaignbrowser > /dev/null 2>&1"
         }
     }
 }
