@@ -12,7 +12,6 @@ from app import restartapache, rmpyc
 from app import pipinstall, manage, migrate, collectstatic
 
 env.user = 'ubuntu'
-env.disable_known_hosts = True
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
 env.app_user = 'ccdc'
 env.project_dir = '/apps/calaccess/repo/'
