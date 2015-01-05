@@ -8,7 +8,7 @@ from configure import loadconfig
 def createserver(
     ami='ami-978dd9a7',
     instance_type='m1.medium',
-    block_gb_size=12
+    block_gb_size=30
 ):
     """
     Spin up a new Ubuntu 14.04 server on Amazon EC2.
