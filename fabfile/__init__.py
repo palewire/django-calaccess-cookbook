@@ -1,13 +1,12 @@
 from __future__ import with_statement
 
-import os
 import yaml
 import time
 from fabric.colors import green
-from fabric.api import env, sudo, local, task
+from fabric.api import env, local, task
 
 from amazon import createserver
-from configure import configure, loadconfig
+from configure import configure
 from chef import installchef, cook
 from app import restartapache, rmpyc
 from app import pipinstall, manage, migrate, collectstatic

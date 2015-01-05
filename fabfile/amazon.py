@@ -4,6 +4,7 @@ from fabric.api import task, env
 from configure import loadconfig
 
 
+@task
 def createserver(
     ami='ami-978dd9a7',
     instance_type='m1.medium',
