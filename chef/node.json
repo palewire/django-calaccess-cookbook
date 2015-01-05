@@ -4,7 +4,8 @@
         "ccdc::python",
         "ccdc::apache",
         "ccdc::mysql",
-        "ccdc::apps"
+        "ccdc::apps",
+        "ccdc::cron"
     ],
     
     "base_packages": [
@@ -47,5 +48,11 @@
     
     "apache_port": "80",
     
-    "crons": {}
+    "crons": {
+        "loaddump": {
+            "minute": "2",
+            "hour": "7",
+            "command": "/apps/calaccess/bin/python /apps/calaccess/repo/manage.py downloadcalaccessrawdata downloadcalaccessrawdata > /dev/null 2>&1 && /apps/calaccess/bin/python /apps/calaccess/repo/manage.py downloadcalaccessrawdata buildcalaccesscampaignbrowser > /dev/null 2>&1"
+        }
+    }
 }
