@@ -42,5 +42,5 @@ def createserver(
     while status == 'pending':
         time.sleep(10)
         status = instance.update()
-    print("- Live at: %s" % instance.public_dns_name)
+    print("- Provisioned at: %s" % instance.public_dns_name)
     return (instance.id, instance.public_dns_name)

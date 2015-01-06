@@ -9,7 +9,6 @@ Prerequisites
 * Python 2.7
 * virtualenv
 * git
-* An account with Amazon Web Services to provision servers using EC2
 
 Getting started
 ---------------
@@ -40,7 +39,15 @@ $ cd repo
 $ pip install -r requirements.txt
 ```
 
-Use Fabric to spin up a server on Amazon EC2. Before it gets started it will
+Starting up a server on Amazon EC2
+----------------------------------
+
+Before you can spin up a server, you will an account with Amazon Web Services to use its EC2 service. If you don't have one already, you'll need to sign up [here]().
+
+You'll also need to [create an key pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) and store it at ``~/.ec2/``. Then ensure your default security group is configured to allow SSH
+access on port 22 and HTTP access on port 80.
+
+Then use Fabric to spin up a server on Amazon EC2. Before it gets started it will
 ask you to input your private credentials.
 
 ```bash
