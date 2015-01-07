@@ -33,8 +33,9 @@ def configure():
     # Request data from the user
     config['AWS_ACCESS_KEY_ID'] = require_input('Your AWS access key:')
     config['AWS_SECRET_ACCESS_KEY'] = require_input('Your AWS secret key:')
-    config['AWS_REGION'] = 'us-west-2'
-    config['key_name'] = require_input('You AWS key name:')
+    config['key_name'] = require_input('Your AWS key name:')
+    config['AWS_REGION'] = raw_input("Target AWS region [Default: us-west-2]:") or 'us-west-2'
+    config['EC2_INSTANCE_TYPE'] = raw_input("Target EC2 instance size [Default: m3.medium]:") or 'm3.medium'
 
     # Write it to a YAML file
     config_file = open('./config.yml', 'w')
@@ -60,6 +61,7 @@ def loadconfig():
         env.key_name = config['key_name']
         env.key_filename = (expanduser("~/.ec2/%s.pem" % env.key_name),)
         env.AWS_REGION = config['AWS_REGION']
+        env.EC2_INSTANCE_TYPE = config['EC2_INSTANCE_TYPE']
     except (KeyError, TypeError):
         pass
     try:

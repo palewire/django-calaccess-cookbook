@@ -7,7 +7,6 @@ from configure import loadconfig
 @task
 def createserver(
     ami='ami-978dd9a7',
-    instance_type='m1.medium',
     block_gb_size=30
 ):
     """
@@ -30,7 +29,7 @@ def createserver(
     reservation = conn.run_instances(
         ami,
         key_name=env.key_name,
-        instance_type=instance_type,
+        instance_type=env.EC2_INSTANCE_TYPE,
         #security_groups=('mysql-dev',),
         block_device_map=bdm,
     )
