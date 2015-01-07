@@ -7,7 +7,7 @@ from configure import loadconfig
 @task
 def createserver(
     ami='ami-978dd9a7',
-    block_gb_size=30
+    block_gb_size=100
 ):
     """
     Spin up a new Ubuntu 14.04 server on Amazon EC2.
