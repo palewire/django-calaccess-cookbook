@@ -30,7 +30,7 @@ def createserver(
         ami,
         key_name=env.key_name,
         instance_type=env.EC2_INSTANCE_TYPE,
-        #security_groups=('mysql-dev',),
+        security_groups=(env.AWS_SECURITY_GROUP,),
         block_device_map=bdm,
     )
     instance = reservation.instances[0]
