@@ -1,2 +1,3 @@
+*.sql.gz
 *.pyc
 config.yml

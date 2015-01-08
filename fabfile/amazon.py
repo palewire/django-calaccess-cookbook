@@ -1,7 +1,43 @@
 import time
+import random
 import boto.ec2
+import boto.rds
 from fabric.api import task, env
 from configure import loadconfig
+
+
+@task
+def createrds(block_gb_size=25):
+    """
+    Spin up a new database backend with Amazon RDS.
+    """
+    loadconfig()
+
+    print("Connecting to Amazon RDS")
+    conn = boto.rds.connect_to_region(
+        env.AWS_REGION,
+        aws_access_key_id=env.AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY,
+    )
+
+    print("- Reserving an database")
+    db = conn.create_dbinstance(
+        "ccdc-%s" % random.choice(range(0, 99)),
+        block_gb_size,
+        'db.%s' % env.EC2_INSTANCE_TYPE,
+        'ccdc',     # Username
+        'ccdcccdc'  # Password
+    )
+
+    # Check up on its status every so often
+    print('- Waiting for instance to start')
+    status = db.update()
+    while status != 'available':
+        time.sleep(10)
+        status = db.update()
+    db.modify(security_groups=[env.AWS_SECURITY_GROUP])
+
+    return db.endpoint[0]
 
 
 @task

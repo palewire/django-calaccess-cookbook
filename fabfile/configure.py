@@ -75,9 +75,6 @@ def loadconfig():
 
 
 class ConfigTask(Task):
-    """
-    A custom class that require loadconfig be run before a task can execute
-    """
     def __init__(self, func, *args, **kwargs):
         super(ConfigTask, self).__init__(*args, **kwargs)
         self.func = func

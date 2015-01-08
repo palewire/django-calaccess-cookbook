@@ -5,12 +5,13 @@ import time
 from fabric.colors import green
 from fabric.api import env, local, task
 
-from amazon import createserver
+from amazon import createserver, createrds
 from configure import configure
 from configure import ConfigTask
 from chef import installchef, cook
 from app import restartapache, rmpyc
 from app import pipinstall, manage, migrate, collectstatic
+from db import getdb, dumpdb, loadrds
 
 env.user = 'ubuntu'
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
@@ -20,7 +21,7 @@ env.activate = 'source /apps/calaccess/bin/activate'
 
 
 @task
-def bootstrap():
+def ec2bootstrap():
     """
     Install chef and use it to fully install the application on
     an Amazon EC2 instance.
@@ -52,6 +53,28 @@ def bootstrap():
     print "Visit the app at %s" % host
 
 
+@task
+def rdsbootstrap():
+    """
+    Install chef and use it to fully install the database on
+    an Amazon RDS instance.
+    """
+    # Fire up a new server
+    host = createrds()
+
+    # Add the new server's host name to the configuration file
+    config = yaml.load(open('./config.yml', 'rb'))
+    config['host'] = str(host)
+    config_file = open('./config.yml', 'w')
+    config_file.write(yaml.dump(config, default_flow_style=False))
+    config_file.close()
+
+    # Load the db snapshot
+    loadrds()
+
+    print(green("Success!"))
+
+
 @task(task_class=ConfigTask)
 def ssh():
     """
@@ -63,7 +86,11 @@ def ssh():
 __all__ = (
     'configure',
     'createserver',
+    'createrds',
+    'dumpdb',
+    'getdb',
     'installchef',
+    'loadrds',
     'cook',
     'restartapache',
     'rmpyc',
@@ -71,6 +98,7 @@ __all__ = (
     'manage',
     'migrate',
     'collectstatic',
-    'bootstrap',
+    'ec2bootstrap',
+    'rdsbootstrap',
     'ssh',
 )
