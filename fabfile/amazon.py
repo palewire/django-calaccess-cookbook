@@ -7,7 +7,7 @@ from configure import loadconfig
 
 
 @task
-def createrds(block_gb_size=25):
+def createrds(block_gb_size=12):
     """
     Spin up a new database backend with Amazon RDS.
     """
