@@ -26,7 +26,9 @@ def createrds(block_gb_size=12):
         block_gb_size,
         'db.%s' % env.EC2_INSTANCE_TYPE,
         'ccdc',     # Username
-        'ccdcccdc'  # Password
+        'ccdcccdc',  # Password
+        db_name='ccdc',
+        security_groups=[env.AWS_SECURITY_GROUP]
     )
 
     # Check up on its status every so often
@@ -35,7 +37,6 @@ def createrds(block_gb_size=12):
     while status != 'available':
         time.sleep(10)
         status = db.update()
-    db.modify(security_groups=[env.AWS_SECURITY_GROUP])
 
     return db.endpoint[0]
 

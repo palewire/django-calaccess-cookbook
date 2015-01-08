@@ -1,5 +1,5 @@
 from configure import ConfigTask
-from fabric.api import sudo, env, cd, task, get
+from fabric.api import sudo, env, cd, task, get, local
 
 
 @task(task_class=ConfigTask)
@@ -14,4 +14,4 @@ def getdb():
 
 @task(task_class=ConfigTask)
 def loadrds():
-    local("gunzip < ccdc.sql.gz | mysql -h ccdc.%s databasename -u ccdc -pccdc" % env.host)
+    local("gunzip < ccdc.sql.gz | mysql -h %s ccdc -u ccdc -pccdcccdc" % env.host)
