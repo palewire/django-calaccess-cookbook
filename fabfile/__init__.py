@@ -5,7 +5,7 @@ import time
 from fabric.colors import green
 from fabric.api import env, local, task
 
-from amazon import createserver, createrds
+from amazon import createserver, createrds, clonerds
 from configure import configure
 from configure import ConfigTask
 from chef import installchef, cook
@@ -84,6 +84,7 @@ def ssh():
 
 
 __all__ = (
+    'clonerds',
     'configure',
     'createserver',
     'createrds',

@@ -42,6 +42,37 @@ def createrds(block_gb_size=12):
 
 
 @task
+def clonerds(name=''):
+    """
+    Create a new RDS instance from a backup snapshot.
+    """
+    loadconfig()
+
+    print("Connecting to Amazon RDS")
+    conn = boto.rds.connect_to_region(
+        env.AWS_REGION,
+        aws_access_key_id=env.AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY,
+    )
+
+    print("- Restoring a database")
+    db = conn.restore_dbinstance_from_dbsnapshot(
+        'ccdc-20140107',
+        name,
+        'db.%s' % env.EC2_INSTANCE_TYPE,
+    )
+
+    # Check up on its status every so often
+    print('- Waiting for instance to start')
+    status = db.update()
+    while status != 'available':
+        time.sleep(10)
+        status = db.update()
+
+    return db.endpoint[0]
+
+
+@task
 def createserver(
     ami='ami-978dd9a7',
     block_gb_size=100
