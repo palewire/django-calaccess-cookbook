@@ -1,7 +1,7 @@
 django-calaccess-bootstrap
 ==========================
 
-A set of helpers for deploying CAL-ACCESS Django apps on Amazon Web Services
+A set of helpers for deploying CAL-ACCESS Django apps with Chef on Amazon Web Services
 
 Prerequisites
 -------------
@@ -53,18 +53,3 @@ ask you to input your private credentials and some configuration options.
 ```bash
 $ fab ec2bootstrap
 ```
-
-Starting a database on Amazon RDS
----------------------------------
-
-Before you can spin up a database, you will an account with Amazon Web Services to use its RDS service. If you don't have one already, you'll need to sign up [here](http://aws.amazon.com).
-
-You'll also need to [create an key pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) and store it at ``~/.ec2/``. Then ensure your default security group is configured to allow MySQL access on port 3306.
-
-Then use Fabric to spin up a database on Amazon RDS. Before it gets started it will
-ask you to input your private credentials and some configuration options.
-
-```bash
-$ fab rdsbootstrap
-```
-
