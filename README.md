@@ -1,7 +1,7 @@
 django-calaccess-bootstrap
 ==========================
 
-A set of helpers for deploying CAL-ACCESS Django apps with Chef on Amazon Web Services
+A Chef cookbook and Fabfile for deploying the California Civic Data Coalition's applications for analyzing the California Secretary of State’s CAL-ACCESS database on Amazon Web Services
 
 Prerequisites
 -------------
