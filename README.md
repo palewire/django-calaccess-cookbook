@@ -1,5 +1,5 @@
-django-calaccess-bootstrap
-==========================
+django-calaccess-cookbook
+=========================
 
 A Chef cookbook and Fabfile for deploying the California Civic Data Coalition's applications for analyzing the California Secretary of State’s CAL-ACCESS database on Amazon Web Services
 
@@ -16,20 +16,20 @@ Getting started
 Create a virtualenv.
 
 ```bash
-$ virtualenv django-calaccess-bootstrap
+$ virtualenv django-calaccess-cookbook
 ```
 
 Jump in it.
 
 ```bash
-$ cd django-calaccess-bootstrap
+$ cd django-calaccess-cookbook
 $ . bin/activate
 ```
 
 Clone this repository.
 
 ```bash
-$ git clone https://github.com/california-civic-data-coalition/django-calaccess-bootstrap.git repo
+$ git clone https://github.com/california-civic-data-coalition/django-calaccess-cookbook.git repo
 ```
 
 Jump in it and install the Python requirements.
